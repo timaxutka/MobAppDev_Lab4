@@ -17,5 +17,16 @@ class Activity2 : AppCompatActivity() {
         val name = intent.getStringExtra("name")
         val textView = findViewById<TextView>(R.id.textView)
         textView.text = "Привет, $name!"
+        val datePicker = findViewById<DatePicker>(R.id.datePicker)
+        val button = findViewById<Button>(R.id.button)
+
+        button.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            calendar.set(datePicker.year, datePicker.month, datePicker.dayOfMonth)
+            val intent = Intent()
+            intent.putExtra("data", calendar.timeInMillis)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }
     }
 }
