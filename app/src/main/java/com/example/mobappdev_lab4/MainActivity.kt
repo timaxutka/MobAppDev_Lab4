@@ -1,6 +1,5 @@
 package com.example.mobappdev_lab4
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import java.text.SimpleDateFormat
-import java.util.Calendar
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private val REQUEST_DATE = 0
@@ -26,12 +25,11 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent, REQUEST_DATE)
         }
     }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == REQUEST_DATE && requestCode == Activity.RESULT_OK) {
-            val dateInMillis = data?.getLongExtra("data", 0) ?: 0
+        if (requestCode == REQUEST_DATE && resultCode == Activity.RESULT_OK) {
+            val dateInMillis = data?.getLongExtra("date", 0) ?: 0
             val calendar = Calendar.getInstance()
             calendar.timeInMillis = dateInMillis
 
